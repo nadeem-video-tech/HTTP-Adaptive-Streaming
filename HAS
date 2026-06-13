@@ -1,0 +1,258 @@
+HTTP adaptive Streaming
+Adaptive HTTP streaming is the preferred method to deliver multimedia content on the internet. It provides multiple representations of the same content in different qualities (i.e., bit-rates and resolutions)
+and allows the client to request segments from the available representations in a dynamic, adaptive way depending on its context. The growing number of representations in adaptive HTTP streaming makes encoding of one video segment at different representations a challenging task in terms of encoding time-complexity.
+
+The main goal is:
+Smooth Playback
+without Buffering or Freezing
+
+It is the core technology behind:
+YouTube
+Netflix
+Twitch
+Amazon Prime Video
+
+Basic Idea
+Instead of sending only one video quality, the server stores multiple versions:
+| Quality | Bitrate  |
+| ------- | -------- |
+| 240p    | 300 kbps |
+| 480p    | 1 Mbps   |
+| 720p    | 3 Mbps   |
+| 1080p   | 6 Mbps   |
+| 4K      | 15 Mbps  |
+The client/player dynamically switches quality depending on bandwidth.
+
+Working Principle
+Step 1: Video Encoding
+The original video is encoded into:
+Multiple resolutions
+Multiple bitrates
+
+Example:
+360p
+720p
+1080p
+
+using codecs such as:
+x264
+x265
+AOMedia Video 1
+
+Step 2: Video Segmentation
+Video is divided into small chunks:
+segment1.ts
+segment2.ts
+segment3.ts
+
+Typical segment duration:
+2–10 seconds
+
+Step 3: Manifest File
+A playlist/manifest describes:
+Available resolutions
+Bitrates
+Segment locations
+
+Examples:
+M3U8 for HLS
+MPD for DASH
+
+Step 4: Adaptive Client Playback
+The player continuously measures:
+Available bandwidth
+Buffer level
+Playback performance
+
+and selects the most suitable bitrate.
+
+Architecture
+Video Source
+      ↓
+Multi-Bitrate Encoder
+      ↓
+Segmenter
+      ↓
+HTTP Server/CDN
+      ↓
+Adaptive Player
+      ↓
+Viewer
+
+Major HTTP Adaptive Streaming Protocols
+1. HLS (HTTP Live Streaming)
+Developed by:
+Apple
+
+Uses:
+M3U8 playlist
+TS/fMP4 segments
+
+Widely supported on:
+iPhone
+Smart TVs
+OTT platforms
+
+2. MPEG-DASH
+Standardized by:
+MPEG
+Uses:
+MPD manifest
+
+Codec independent:
+AVC
+HEVC
+AV1
+VVC
+
+3. Low-Latency HLS (LL-HLS)
+Improved HLS for:
+Live sports
+Esports
+Interactive streaming
+
+Latency:
+~2–5 seconds
+
+Adaptive Bitrate (ABR) Algorithms
+ABR logic decides quality switching.
+
+Parameters:
+Throughput estimation
+Buffer occupancy
+Packet loss
+QoE metrics
+
+Popular ABR methods:
+Throughput-based
+Buffer-based
+Hybrid ABR
+AI/ML-based ABR
+
+Example of Adaptive Switching
+Suppose:
+User starts at 1080p
+Internet speed drops
+
+Player automatically switches:
+1080p → 720p → 480p
+without stopping playback.
+When bandwidth improves:
+Quality increases again.
+
+Advantages
+1. Reduced Buffering
+Main advantage.
+2. Better User Experience
+Continuous playback.
+3. Scalability
+Uses normal HTTP servers and CDNs.
+4. Firewall Friendly
+Works over standard HTTP/HTTPS.
+5. Device Compatibility
+Works on:
+Mobile
+TV
+Browser
+Gaming console
+
+Challenges
+1. Latency
+Traditional HAS introduces delay:
+10–30 seconds
+Problematic for:
+Esports
+Video conferencing
+2. Quality Oscillation
+Frequent bitrate switching may degrade QoE.
+3. Bandwidth Estimation Errors
+Incorrect prediction can cause buffering.
+
+Low-Latency HTTP Streaming
+Modern esports streaming requires:
+Ultra-low latency
+Stable playback
+Technologies:
+LL-HLS
+Low-Latency DASH
+
+CMAF (Common Media Application Format)
+Standardized segmented format.
+Benefits:
+Shared segments between HLS and DASH
+Lower latency
+Better CDN efficiency
+
+Widely used for:
+OTT
+Live streaming
+Esports
+
+Relation with Video Compression
+Compression directly impacts HAS performance.
+Better codecs:
+Reduce bandwidth
+Improve quality
+Lower CDN cost
+Example:
+AV1 may reduce bitrate by ~30% compared to AVC.
+
+HAS in Esports Streaming
+Esports platforms require:
+High frame rate
+Fast motion preservation
+Low latency
+No freezing
+
+HAS enables:
+Dynamic quality adaptation
+Global scalability
+Smooth live viewing
+
+AI in Adaptive Streaming
+Modern research uses AI for:
+Bitrate prediction
+QoE optimization
+Scene-aware streaming
+Reinforcement learning ABR
+Example:
+Allocate more bitrate during:
+Explosions
+Fast camera movement
+Competitive action scenes
+
+Important Research Areas
+For your background in image/video coding, strong topics include:
+
+1. AI-Based ABR Algorithms
+Very active research area.
+
+2. Low-Latency Streaming
+Critical for esports/cloud gaming.
+
+3. Perceptual Quality Optimization
+Gaming-specific QoE metrics.
+
+4. Neural Video Compression + HAS
+Future streaming architecture.
+
+5. Edge-Assisted Streaming
+AI at CDN edge nodes.
+
+Industry Applications
+| Application        | Requirement           |
+| ------------------ | --------------------- |
+| Netflix/OTT        | High quality          |
+| Esports            | Ultra-low latency     |
+| Cloud gaming       | Interactive streaming |
+| Online education   | Stability             |
+| Video conferencing | Real-time             |
+
+Future Trends
+Future HAS systems will use:
+AI-driven adaptation
+Neural codecs
+Edge computing
+5G/6G optimization
+Personalized QoE models
+8K streaming
