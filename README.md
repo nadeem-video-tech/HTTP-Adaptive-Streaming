@@ -3,3 +3,4 @@ HTTP Adaptive Streaming (HAS) is a video streaming technique where the video qua
 ![Alt text](https://github.com/nadeem-video-tech/HTTP-Adaptive-Streaming/blob/2d0a806457a665f29c0dcca176c4bbb3071dc759/HTTP%20Adaptive%20Streaming.jpg)
 ![Alt text](https://github.com/nadeem-video-tech/HTTP-Adaptive-Streaming/blob/fb44b7a8db75dc2686df18bd413f1775f0f5966d/Encoded%20into%20different%20bitrates1.jpg)
 ![Alt text](https://github.com/nadeem-video-tech/HTTP-Adaptive-Streaming/blob/7122000a4cc911da2764f0161cf7b08b5b36f1b7/HTTP_Client2.jpg)
+![Alt text](https://github.com/nadeem-video-tech/HTTP-Adaptive-Streaming/blob/01867c410b9b2241ace9e9a147a8674bfe8ad8be/HAS3.jpg)
